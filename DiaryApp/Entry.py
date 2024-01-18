@@ -7,3 +7,12 @@ class Entry:
 
     def getId(self):
         return self.id
+
+    def setTitle(self, title):
+        self.title = title
+
+    def getBody(self):
+        return self.body
+
+    def setBody(self, concat):
+        self.body = concat

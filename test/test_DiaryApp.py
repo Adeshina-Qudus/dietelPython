@@ -52,3 +52,28 @@ class TestDiary(TestCase):
         with self.assertRaises(InvalidID):
             my_diary.findEntryByID(4)
 
+    def test_deleteEntry(self):
+        my_diary = Diary("jumoke", "pin")
+        my_diary.createEntry("my love life", "heart broken")
+        my_diary.createEntry("my love life part 2", "heart broken again")
+        my_diary.deleteEntry(1)
+        self.assertEqual(1, my_diary.numbers_of_Entry())
+
+    def test_deleteEntry_andFindNumberOfEntryLeft(self):
+        my_diary = Diary("jumoke", "pin")
+        my_diary.createEntry("my love life", "heart broken")
+        my_diary.createEntry("my love life part 2", "heart broken again")
+        my_diary.createEntry("my love life", "heart broken")
+        my_diary.createEntry("my love life part 2", "heart broken again")
+        my_diary.deleteEntry(1)
+        my_diary.deleteEntry(3)
+        self.assertEqual(2, my_diary.numbers_of_Entry())
+
+    def test_updateEntry(self):
+        my_diary = Diary("jumoke", "pin")
+        my_diary.createEntry("my love life", "heart broken")
+        my_diary.updateEntry(1,"love is back","found Love Back")
+        entry : Entry = my_diary.findEntryByID(1)
+        self.assertEqual("heart broken found Love Back",entry.getBody())
+
+
